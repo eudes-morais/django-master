@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="card align-items-center" style="width: 38rem;">
+      {% if car.photo.url != None %}
+      <img class="card-img-top" src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand_id }}">
+      {% else %}
+      <img src="/media/cars/sem_imagem.jpg" alt="sem imagem" />
+      {% endif %}
+      <div class="card-body">
+        <h1 class="card-text text-center"><strong>{{ object.model }}</strong></h1>
+        <p class="card-text"><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
+        <p class="card-text"><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
+        <p class="card-text"><strong>Placa:</strong> {{ object.plate }}</p>
+        <p class="card-text"><strong>Preço:</strong> R$ {{ object.value }}</p>
+      </div>
+    </div>
+</div>
+</div>
+{% endblock %}

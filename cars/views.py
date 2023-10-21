@@ -1,0 +1,42 @@
+from django.shortcuts import render, redirect
+from cars.models import Car
+from cars.forms import CarModelForm
+from django.views import View
+from django.views.generic import ListView, CreateView, DetailView, DeleteView
+
+# Reescrevendo as views utilizando CBV. A vantagem é a organização do código.
+# Que agora se assemelha a uma classe e tem um método que será executado
+class CarsListView(ListView):
+    # Os nomes MODEL, TEMPLATE_NAME e CONTEXT_OBJECT_NAME devem ser respeitado e
+    # digitados corretamente, pois são ATRIBUTOS de LISTVIEW que devem ser passados!
+    model = Car
+    template_name = 'cars.html'
+    context_object_name = 'cars'
+
+    def get_queryset(self):
+        cars = super().get_queryset().order_by('model')
+        search = self.request.GET.get('search')
+
+        if search:
+            cars = cars.filter(model__icontains=search).order_by('model')
+        
+        return cars
+
+class CarCreateView(CreateView):
+    # Como esta classe herda as propriedades de CREATEVIEW, cabe a propria classe,
+    # na hora em que ela é requisitada, 'descobrir' se é uma operação GET ou POST
+    model = Car
+    form_class = CarModelForm 
+    template_name = 'new_car.html'
+    success_url = '/cars'
+    # Ou se usa o atributo FORM_CLASS ou FIELDS, os dois atributos não podem ser utilizados ao mesmo tempo
+    # fields = ["brand_id", "model", "factory_year", "model_year", "value", "plate", "photo"]
+
+    # Aqui também ocorre que todas as informações quando forem carregadas no template (aqui no caso é o NEW_CAR.HTML),
+    # Vem no contexto FORM, por isso, lá no template, deve-se colocar apenas 'form'. No case do template new_car.html,
+    # Será criado uma tabela, logo, é passado o contexto {{ form.as_table }}
+
+class CarDetailView(DetailView):
+    model = Car
+    template_name = 'car_detail.html'
+    

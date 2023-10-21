@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post">
+
+        {% csrf_token %}
+
+        <div class="container mb-3">
+            <table>
+                {{ login_form.as_table }}
+            </table>
+
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </div>
+
+    </form>
+{% endblock %}
