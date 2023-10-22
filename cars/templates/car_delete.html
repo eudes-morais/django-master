@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="container">
+    <h1>Deletar carro</h1>
+    <p>Are you sure you want to delete "{{ object.brand_id }} {{ object.model }}"?</p>
+    <div class="button">
+      <button type="submit" class="btn btn-danger">Excluir</button>
+      <a href="{% url 'car_detail' pk=object.pk %}" class="btn btn-secondary">Cancelar</a> 
+    </div>
+  </div>
+</form>
+{% endblock %}

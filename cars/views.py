@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from cars.models import Car
 from cars.forms import CarModelForm
 from django.views import View
-from django.views.generic import ListView, CreateView, DetailView, DeleteView
+from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.urls import reverse_lazy
 
 # Reescrevendo as views utilizando CBV. A vantagem é a organização do código.
 # Que agora se assemelha a uma classe e tem um método que será executado
@@ -39,4 +40,19 @@ class CarCreateView(CreateView):
 class CarDetailView(DetailView):
     model = Car
     template_name = 'car_detail.html'
+
+class CarUpdateView(UpdateView):
+    model = Car
+    form_class = CarModelForm
+    template_name = 'car_update.html'
+    # No lugar do sucess_url abaixo, será usada a função get_success_url
+    # success_url = '/cars' 
+
+    def get_success_url(self):
+        return reverse_lazy('car_detail', kwargs={'pk': self.object.pk})
+    
+class CarDeleteView(DeleteView):
+    model = Car
+    template_name = 'car_delete.html'
+    success_url = '/cars'
     

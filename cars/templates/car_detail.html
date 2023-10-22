@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
   <div class="row justify-content-center">
-    <div class="card align-items-center" style="width: 38rem;">
+    <div class="card flex align-items-center" style="width: 38rem;">
       {% if car.photo.url != None %}
       <img class="card-img-top" src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand_id }}">
       {% else %}
@@ -14,6 +14,10 @@
         <p class="card-text"><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
         <p class="card-text"><strong>Placa:</strong> {{ object.plate }}</p>
         <p class="card-text"><strong>Preço:</strong> R$ {{ object.value }}</p>
+      </div>
+      <div class="card-footer border-0">
+        <a href="{% url 'car_update' pk=object.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'car_delete' pk=object.pk %}" class="btn btn-danger">Excluir</a> 
       </div>
     </div>
 </div>
