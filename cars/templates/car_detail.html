@@ -15,10 +15,12 @@
         <p class="card-text"><strong>Placa:</strong> {{ object.plate }}</p>
         <p class="card-text"><strong>Preço:</strong> R$ {{ object.value }}</p>
       </div>
+      {% if user.is_authenticated %}
       <div class="card-footer border-0">
         <a href="{% url 'car_update' pk=object.pk %}" class="btn btn-warning">Editar</a>
         <a href="{% url 'car_delete' pk=object.pk %}" class="btn btn-danger">Excluir</a> 
       </div>
+      {% endif %}
     </div>
 </div>
 </div>
