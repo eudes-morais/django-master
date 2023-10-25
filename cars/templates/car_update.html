@@ -11,7 +11,7 @@
     <div>
       <div class="buttons-container">
         <input class="btn btn-primary" type="submit" value="Salvar Alterações" />
-        <a href="{% url 'car_detail' %}" class="btn btn-secondary">Cancelar</a> 
+        <a href="{% url 'car_detail' pk=object.pk %}" class="btn btn-secondary">Cancelar</a> 
       </div>
     </div>
   </div>
