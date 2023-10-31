@@ -3,6 +3,8 @@ from cars.models import Car
 from cars.forms import CarModelForm
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 
 # Reescrevendo as views utilizando CBV. A vantagem é a organização do código.
@@ -23,6 +25,15 @@ class CarsListView(ListView):
         
         return cars
 
+class CarDetailView(DetailView):
+    model = Car
+    template_name = 'car_detail.html'
+
+
+# O decorator abaixo serve para adicionar uma nova funcionalidade na classe que
+# ele está sendo declarado. Neste caso, o decorator login_required verifica se o
+# usuário está logado. Caso não esteja ele é redirecionado para a tela de login
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CarCreateView(CreateView):
     # Como esta classe herda as propriedades de CREATEVIEW, cabe a propria classe,
     # na hora em que ela é requisitada, 'descobrir' se é uma operação GET ou POST
@@ -37,10 +48,7 @@ class CarCreateView(CreateView):
     # Vem no contexto FORM, por isso, lá no template, deve-se colocar apenas 'form'. No case do template new_car.html,
     # Será criado uma tabela, logo, é passado o contexto {{ form.as_table }}
 
-class CarDetailView(DetailView):
-    model = Car
-    template_name = 'car_detail.html'
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CarUpdateView(UpdateView):
     model = Car
     form_class = CarModelForm
@@ -51,6 +59,7 @@ class CarUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('car_detail', kwargs={'pk': self.object.pk})
     
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class CarDeleteView(DeleteView):
     model = Car
     template_name = 'car_delete.html'

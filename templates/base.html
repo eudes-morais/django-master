@@ -13,9 +13,13 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary __web-inspector-hide-shortcut__">
-        <div class="collapse navbar-collapse" id="navbarColor02">
-          <ul class="navbar-nav mr-auto">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             {% if user.is_authenticated %}
             <li class="navbar-brand">Olá, {{ user.username }}</li>
             <li class="nav-item">
@@ -38,8 +42,8 @@
             {% endif %}
           </ul>
           <form method="GET" action="{% url 'cars_list' %}" class="form-inline">
-            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Buscar modelo..." aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Digite o modelo" aria-label="Search">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Procurar</button>
           </form>
         </div>
       </nav>
