@@ -41,6 +41,7 @@ class CarCreateView(CreateView):
     form_class = CarModelForm 
     template_name = 'new_car.html'
     success_url = '/cars'
+    
     # Ou se usa o atributo FORM_CLASS ou FIELDS, os dois atributos não podem ser utilizados ao mesmo tempo
     # fields = ["brand_id", "model", "factory_year", "model_year", "value", "plate", "photo"]
 
@@ -53,6 +54,7 @@ class CarUpdateView(UpdateView):
     model = Car
     form_class = CarModelForm
     template_name = 'car_update.html'
+    
     # No lugar do sucess_url abaixo, será usada a função get_success_url
     # success_url = '/cars' 
 
