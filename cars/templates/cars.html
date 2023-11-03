@@ -4,7 +4,7 @@
     <div class="card ml-3 mb-4">
       {% if car.photo %}
       <img src="{{ car.photo.url }}" class="card-img-top" 
-        style="width: 100%; height: 25vh; object-fit: cover;"  alt="{{ car.model }} - {{ car.brand }}" />
+        style="width: 100%; height: 25vh; object-fit: cover;"  alt="{{ car.model }} - {{ car.brand_id }}" />
       {% else %}
       <img src="/media/cars/sem_imagem.jpg" class="card-img-top"
         style="width: 100%; height: 25vh; object-fit: cover;" alt="sem imagem" />
