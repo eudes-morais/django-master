@@ -7,7 +7,7 @@ def get_car_ai_desc(model, brand_id, year):
     #     Fale coisas específicas deste modelo.
     #     '''
     # prompt = prompt.format(brand_id, model, year)
-    openai.api_key = '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'
+    openai.api_key = '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'
     prompt = f'Me mostre uma descrição de venda para o carro {brand_id} {model} {year} em apenas 200 caracteres. Fale coisas específicas deste modelo.'
     response = openai.Completion.create(
         model='text-davinci-003',

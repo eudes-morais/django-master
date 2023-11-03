@@ -3,22 +3,18 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="card flex " style="width: 38rem;">
-      {% if car.photo.url != None %}
+      {% if car.photo %}
       <img class="card-img-top" src="{{ object.photo.url }}" alt="{{ object.model }} - {{ object.brand_id }}">
       {% else %}
       <img src="/media/cars/sem_imagem.jpg" alt="sem imagem" />
       {% endif %}
       <div class="card-body">
-        <h1 class="card-text text-center"><strong>{{ car.model }}</strong></h1>
+        <h1 class="card-text text-center"><strong>{{ car.brand_id }} <br> {{ car.model }}</strong></h1>
         <p class="card-text"><strong>Ano de fabricação:</strong> {{ object.factory_year }}</p>
         <p class="card-text"><strong>Ano do modelo:</strong> {{ object.model_year }}</p>
         <p class="card-text"><strong>Placa:</strong> {{ object.plate }}</p>
         <p class="card-text"><strong>Preço:</strong> R$ {{ object.value }}</p>
-        {% if car.description != None %}
-        <p class="card-text"><strong>Descrição:</strong> {{ object.description }}</p>
-        {% else %}
-        <p class="card-text"><strong>Descrição:</strong> Sem descrição</p>
-        {% endif %}
+        <p class="card-text text-justify"><strong>Descrição:</strong> {{ object.description }}</p>
       </div>
       {% if user.is_authenticated %}
       <div class="card-footer border-0 text-center">
