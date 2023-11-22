@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 #     }
 # }
 
-# Conectando no BD PostgreSQL
+# Conectando no BD PostgreSQL. DEVE-SE instalar o pacote psycopg2-binary
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",

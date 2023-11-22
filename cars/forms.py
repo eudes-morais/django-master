@@ -1,5 +1,5 @@
 from django import forms
-from cars.models import Brand, Car
+from cars.models import Car
 
 # O que ocorre aqui, é algo parecido com a camada de controler. Esta camada (FORM)
 # está entre os models (entidades) e o banco de dados
